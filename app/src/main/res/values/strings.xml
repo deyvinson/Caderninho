@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">Caderninho</string>
+
+    //login
+    <string name="login_titulo">Exemplo Login</string>
+    <string name="ligin_usuario">Usuário</string>
+    <string name="ligin_senha">Senha</string>
+    <string name="login_btn_entrar">Entrar</string>
+    <string name="login_btn_cadastrar">Cadastra-se</string>
+
+    //cadastro
+    <string name="cadastro_nome">Nome do usuário</string>
+    <string name="cadastro_login">Login</string>
+    <string name="cadastro_senha">Senha</string>
+    <string name="cadastro_repetir_senha">Repetir senha</string>
+    <string name="cadastro_btn_cadastrar">Cadastrar</string>
+
+    //Login
+    <string name="txtLoginWelcome">Todas as suas anotações \n em um único lugar.</string>
+    <string name="txtLoginCadastrar">Novo por aqui?</string>
+
+    //notas
+    <string name="txtNotaTitulo">Nova anotação</string>
+
+</resources>
