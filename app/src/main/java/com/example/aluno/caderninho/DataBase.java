@@ -18,48 +18,34 @@ import java.util.List;
 
 public class DataBase {
 
+    Context contexto;
 
     private ArrayList<Anotacao> listaNotas;
 
     public DataBase(Context contexto) {
 
-        SharedPreferences sharedPref = contexto.getSharedPreferences("data", Context.MODE_PRIVATE);
+        this.contexto = contexto;
 
-        String json = sharedPref.getString("lista","");
 
-        if (json.equals(""))
-        {
-            this.listaNotas = new ArrayList();
-        }
-        else
-            {
-            Type textoLidoDaInterface = new TypeToken<List<Anotacao>>() {
-            }.getType();
-
-            Gson gson = new Gson();
-
-            listaNotas = gson.fromJson(json, textoLidoDaInterface);
-
-        }
     }
 
-    public void NovaAnotacao(Context contexto, Anotacao nota){
-
+    public void NovaAnotacao(Anotacao nota){
+        getListaNotas();
         listaNotas.add(nota);
-        SalvarAnotacao(contexto);
+        SalvarAnotacao();
 
     }
 
-    public void AlterarAnotacao(Context contexto, Anotacao nota, int posicao){
-
+    public void AlterarAnotacao(Anotacao nota, int posicao){
+        getListaNotas();
         listaNotas.get(posicao).titulo = nota.titulo;
         listaNotas.get(posicao).conteudo = nota.conteudo;
 
-        SalvarAnotacao(contexto);
+        SalvarAnotacao();
     }
 
 
-    private void SalvarAnotacao(Context contexto) {
+    private void SalvarAnotacao() {
 
         Gson gson = new Gson();
 
@@ -76,15 +62,37 @@ public class DataBase {
 
 
     public ArrayList<Anotacao> getListaNotas() {
+
+        SharedPreferences sharedPref = contexto.getSharedPreferences("data", Context.MODE_PRIVATE);
+
+        String json = sharedPref.getString("lista","");
+
+        if (json.equals(""))
+        {
+            this.listaNotas = new ArrayList();
+        }
+        else
+        {
+            Type textoLidoDaInterface = new TypeToken<List<Anotacao>>() {
+            }.getType();
+
+            Gson gson = new Gson();
+
+            listaNotas = gson.fromJson(json, textoLidoDaInterface);
+
+        }
+
         return listaNotas;
     }
 
     public Anotacao getNota(int posicao) {
+        getListaNotas();
+
         return listaNotas.get(posicao);
     }
 
 
-    public int getNextId(Context contexto){
+    public int getNextId(){
         SharedPreferences sharedPref = contexto.getSharedPreferences("data", Context.MODE_PRIVATE);
         int ultimoId = sharedPref.getInt("UltimoId", 0);
 
@@ -97,9 +105,11 @@ public class DataBase {
         return ultimoId;
     }
 
-    public void ExcluirAnotacao(Context contexto, int id){
+    public void ExcluirAnotacao(int posicao){
+        getListaNotas();
+        listaNotas.remove(posicao);
 
-
+        SalvarAnotacao();
     }
 
 

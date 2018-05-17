@@ -1,6 +1,7 @@
 package com.example.aluno.caderninho;
 
 import android.content.Intent;
+import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
@@ -9,6 +10,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -23,7 +26,6 @@ public class NotaActivity extends AppCompatActivity {
 
     DataBase data;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,13 +39,15 @@ public class NotaActivity extends AppCompatActivity {
 
         data = new DataBase(this);
 
-
         if(novaNota == true)
         {
-            int id = data.getNextId(NotaActivity.this);
-            Date date = new Date(System.currentTimeMillis());
-            nota = new Anotacao(id, "Nova Anotação", "", date.toString());
+            int id = data.getNextId();
 
+            DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+            Date date = new Date(System.currentTimeMillis());
+            String dataFormatada = df.format(date);
+
+            nota = new Anotacao(id, "Nova Anotação", "", dataFormatada);
             titulo.setText(nota.titulo);
             dataHora.setText(nota.dataHora);
         }
@@ -57,9 +61,7 @@ public class NotaActivity extends AppCompatActivity {
             dataHora.setText(n.dataHora);
             conteudo.setText(n.conteudo);
         }
-
     }
-
 
     @Override
     public void onBackPressed() {
@@ -70,22 +72,14 @@ public class NotaActivity extends AppCompatActivity {
 
         if (novaNota == true)
         {
-            data.NovaAnotacao(this, nota);
-
-            Toast.makeText(this, "Anotação salva!", Toast.LENGTH_SHORT);
-            Intent i = new Intent(NotaActivity.this, MainActivity.class);
-            startActivity(i);
+            data.NovaAnotacao(nota);
         }
         else
         {
-            data.AlterarAnotacao(this, nota, posicao);
-
-            Toast.makeText(this, "Anotação alterada!", Toast.LENGTH_SHORT);
-            Intent i = new Intent(NotaActivity.this, MainActivity.class);
-            startActivity(i);
+            data.AlterarAnotacao(nota, posicao);
         }
 
-
-
+        Toast.makeText(this, "Anotação salva!", Toast.LENGTH_SHORT).show();
+        NotaActivity.this.finish();
     }
 }

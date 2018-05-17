@@ -1,2 +1,0 @@
-# Caderninho
-App de anotações
