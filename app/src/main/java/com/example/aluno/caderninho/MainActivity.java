@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ListView listNotas;
     private FloatingActionButton btnNew;
+    private TextView empty;
 
     DataBase data;
 
@@ -36,8 +37,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
 
         data.getListaNotas();
-        adapterNotas = new AdapterNotas(data.getListaNotas(),this);
-        listNotas.setAdapter(adapterNotas);
+
+        if (data.getListaNotas().size() > 0) {
+            adapterNotas = new AdapterNotas(data.getListaNotas(), this);
+            listNotas.setAdapter(adapterNotas);
+            empty.setVisibility(View.GONE);
+        }
+
+        else{
+            empty.setVisibility(View.VISIBLE);
+        }
 
         super.onResume();
     }
@@ -52,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
         listNotas = findViewById(R.id.listNotas);
         btnNew = findViewById(R.id.btnNew);
         data = new DataBase(this);
+        empty = findViewById(R.id.lblEmpty);
 
         //refresh na lista
         data.getListaNotas();
@@ -113,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
                 adapterNotas = new AdapterNotas(data.getListaNotas(),MainActivity.this);
                 listNotas.setAdapter(adapterNotas);
 
-                Toast.makeText(MainActivity.this, "Anotação excluída", Toast.LENGTH_LONG).show();
+                Toast.makeText(MainActivity.this, "Anotação excluída", Toast.LENGTH_SHORT).show();
                 dialog.dismiss();
             }
         });

@@ -21,5 +21,8 @@
 
     //notas
     <string name="txtNotaTitulo">Nova anotação</string>
+    <string name="txtNotaConteudo">Insira o conteúdo aqui</string>
+
+    <string name="txtEmptyList">Todas as suas anotações \n em um único lugar.</string>
 
 </resources>

@@ -14,6 +14,7 @@ public class SplashScreenActivity extends AppCompatActivity {
     private TextView textViewSplash;
     private ProgressBar progressBarSplash;
     private Integer SPLASH_TIME_OUT = 0;
+    private Login login;
 
 
 
@@ -35,8 +36,21 @@ public class SplashScreenActivity extends AppCompatActivity {
                                           SPLASH_TIME_OUT += 1;
                                           progressBarSplash.setProgress(SPLASH_TIME_OUT);
                                           if (SPLASH_TIME_OUT >= 5){
-                                              Intent i = new Intent(SplashScreenActivity.this,LoginActivity.class);
-                                              startActivity(i);
+
+                                              login = new Login();
+
+
+                                              if (login.LoginAutomatico(SplashScreenActivity.this)) {
+
+                                                  Intent i = new Intent(SplashScreenActivity.this, MainActivity.class);
+                                                  startActivity(i);
+                                              }
+                                              else{
+                                                  Intent i = new Intent(SplashScreenActivity.this, LoginActivity.class);
+                                                  startActivity(i);
+
+                                              }
+
                                               this.cancel();
                                               SplashScreenActivity.this.finish();
 

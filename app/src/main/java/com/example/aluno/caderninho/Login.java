@@ -13,7 +13,6 @@ public class Login {
     public boolean login(Context contexto, String usuario, String senha){
         boolean validation = true;
 
-
         SharedPreferences sharedPref = contexto.getSharedPreferences("AppLoginExemplo", Context.MODE_PRIVATE);
         String loginDB = sharedPref.getString("login","^7j*^$89");
         String senhaDB = sharedPref.getString("senha","^7j*^$89");
@@ -21,7 +20,9 @@ public class Login {
         if (!usuario.equals(loginDB) || !senha.equals(senhaDB)) {
             validation = false;
         }
-
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putBoolean("validation", validation);
+        editor.commit();
 
         return validation;
     }
@@ -62,6 +63,18 @@ public class Login {
         editor.putString("login", login);
         editor.putString("senha", senha);
         editor.commit();
+    }
+
+    public boolean LoginAutomatico(Context contexto){
+        SharedPreferences sharedPref = contexto.getSharedPreferences("AppLoginExemplo", Context.MODE_PRIVATE);
+        boolean validation = sharedPref.getBoolean("validation", false);
+
+        if (validation){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
 }

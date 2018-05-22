@@ -47,7 +47,7 @@ public class NotaActivity extends AppCompatActivity {
             Date date = new Date(System.currentTimeMillis());
             String dataFormatada = df.format(date);
 
-            nota = new Anotacao(id, "Nova Anotação", "", dataFormatada);
+            nota = new Anotacao(id, "", "", dataFormatada);
             titulo.setText(nota.titulo);
             dataHora.setText(nota.dataHora);
         }
@@ -67,7 +67,13 @@ public class NotaActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
 
-        nota.titulo = titulo.getText().toString();
+        if(titulo.getText().toString().isEmpty()) {
+            nota.titulo = "Nova anotação";
+        }
+        else{
+            nota.titulo = titulo.getText().toString();
+        }
+
         nota.conteudo = conteudo.getText().toString();
 
         if (novaNota == true)

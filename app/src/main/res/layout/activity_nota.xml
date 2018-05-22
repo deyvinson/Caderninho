@@ -44,6 +44,7 @@
         android:layout_marginTop="8dp"
         android:ems="10"
         android:gravity="top"
+        android:hint="Insira o conteúdo aqui"
         android:inputType="textMultiLine"
         android:textIsSelectable="false"
         android:textSize="20sp"
