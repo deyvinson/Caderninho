@@ -5,20 +5,8 @@
     android:id="@+id/SplashTela"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
     tools:context="com.example.aluno.caderninho.SplashScreenActivity">
-
-    <TextView
-        android:id="@+id/txtBemVindo"
-        android:layout_width="wrap_content"
-        android:layout_height="22dp"
-        android:layout_marginBottom="40dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:text="Caderninho"
-        app:layout_constraintBottom_toTopOf="@+id/SplashBolinha"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintStart_toStartOf="parent" />
 
     <ProgressBar
         android:id="@+id/SplashBolinha"
@@ -30,13 +18,30 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:indeterminate="false"
-        android:progressTint="@color/colorAccent"
+        android:progressTint="@android:color/background_light"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.469" />
 
+    <TextView
+        android:id="@+id/txtBemVindo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/txtLoginWelcome"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:textColor="@android:color/background_light"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/SplashBolinha"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </android.support.constraint.ConstraintLayout>

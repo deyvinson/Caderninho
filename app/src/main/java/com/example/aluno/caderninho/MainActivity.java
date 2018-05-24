@@ -1,12 +1,18 @@
 package com.example.aluno.caderninho;
 
+import android.app.ActivityOptions;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.transition.Slide;
+import android.transition.TransitionInflater;
+import android.util.Pair;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -51,6 +57,11 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
     }
 
+    /*private void setupWindowAnimations() {
+        Slide slide = new Slide();
+        slide.setDuration(1000);
+        getWindow().setExitTransition(slide);
+    }*/
 
 
     @Override
@@ -76,6 +87,16 @@ public class MainActivity extends AppCompatActivity {
                 Intent i = new Intent(MainActivity.this, NotaActivity.class);
                 i.putExtra("novaNota", true);
                 startActivity(i);
+
+               /* ActivityOptions.makeSceneTransitionAnimation(
+
+                        (
+                        this,
+                        new Pair<View, String>(circleImage,
+                                ViewCompat.getTransitionName(circleImage)))
+                        .toBundle());*/
+                overridePendingTransition(R.anim.from_right_in, R.anim.from_left_out);
+
             }
         });
 
@@ -89,6 +110,7 @@ public class MainActivity extends AppCompatActivity {
                 i.putExtra("posicao", x);
                 i.putExtra("novaNota", false);
                 startActivity(i);
+                overridePendingTransition(R.anim.from_right_in, R.anim.from_left_out);
             }
         });
 
@@ -124,6 +146,11 @@ public class MainActivity extends AppCompatActivity {
                 listNotas.setAdapter(adapterNotas);
 
                 Toast.makeText(MainActivity.this, "Anotação excluída", Toast.LENGTH_SHORT).show();
+
+                if (data.getListaNotas().size() < 1){
+                    empty.setVisibility(View.VISIBLE);
+                }
+
                 dialog.dismiss();
             }
         });

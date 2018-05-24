@@ -35,7 +35,7 @@ public class SplashScreenActivity extends AppCompatActivity {
                                       public void run() {
                                           SPLASH_TIME_OUT += 1;
                                           progressBarSplash.setProgress(SPLASH_TIME_OUT);
-                                          if (SPLASH_TIME_OUT >= 5){
+                                          if (SPLASH_TIME_OUT >= 4){
 
                                               login = new Login();
 
@@ -44,10 +44,12 @@ public class SplashScreenActivity extends AppCompatActivity {
 
                                                   Intent i = new Intent(SplashScreenActivity.this, MainActivity.class);
                                                   startActivity(i);
+                                                  overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
                                               }
                                               else{
                                                   Intent i = new Intent(SplashScreenActivity.this, LoginActivity.class);
                                                   startActivity(i);
+                                                  overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
 
                                               }
 

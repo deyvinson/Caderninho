@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Caderninho</string>
 
-    //login
+    //cadastro
     <string name="login_titulo">Exemplo Login</string>
     <string name="ligin_usuario">Usuário</string>
     <string name="ligin_senha">Senha</string>
@@ -23,6 +23,6 @@
     <string name="txtNotaTitulo">Nova anotação</string>
     <string name="txtNotaConteudo">Insira o conteúdo aqui</string>
 
-    <string name="txtEmptyList">Todas as suas anotações \n em um único lugar.</string>
+    <string name="txtEmptyList">Nenhuma anotação ainda! \n Toque no botão para adicionar.</string>
 
 </resources>

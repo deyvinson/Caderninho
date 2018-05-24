@@ -16,7 +16,7 @@
         android:text="Lista de Anotações"
         android:textAppearance="@style/TextAppearance.AppCompat"
         android:textSize="30sp"
-        app:layout_constraintEnd_toStartOf="@+id/btnNew"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -36,21 +36,6 @@
 
     </ListView>
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/btnNew"
-        style="@android:style/Widget.DeviceDefault.Button.Small"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="4dp"
-        android:text="+"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/txtMainTitle"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_add_black_24dp" />
-
     <TextView
         android:id="@+id/lblEmpty"
         android:layout_width="wrap_content"
@@ -59,10 +44,32 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="Sem anotações ainda"
+        android:text="@string/txtEmptyList"
+        android:textAlignment="center"
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/btnNew"
+        style="@android:style/Widget.DeviceDefault.Button.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="+"
+        android:textSize="24sp"
+        app:backgroundTint="?attr/colorPrimaryDark"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.97"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.97"
+        app:srcCompat="@drawable/ic_add_black_24dp" />
 
 </android.support.constraint.ConstraintLayout>
